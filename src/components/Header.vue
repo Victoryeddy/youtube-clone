@@ -5,11 +5,15 @@ import Avatar from './Icons/Avatar.vue';
 
 const searchTerm = ref<string>('');
 
-defineEmits()
+const emit = defineEmits<{
+  // <eventName>: <expected arguments>
+
+  change: [] // when there are no arguments
+  update: [value: any] 
+}>()
 
 const onSearch = () => {
-  console.log('Search term:', searchTerm.value);
-  // Emit search event or perform API call
+  emit('update',searchTerm.value)
 };
 </script>
 

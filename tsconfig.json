@@ -5,7 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
    "compilerOptions": {
-    "strict": true, // Enable strict mode for better type checking
-    "skipLibCheck": true // Skip library checks to avoid conflicts
+    "strict": true, 
+    "skipLibCheck": true
   }
 }
