@@ -2,8 +2,7 @@
 
 import {type Video} from '../types/video'
 defineProps<{
-    videos: Video[],
-    menuOpen?: boolean
+    videos: Video[]   
 }>()
 
 
