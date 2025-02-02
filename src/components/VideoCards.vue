@@ -5,15 +5,19 @@ defineProps<{
     videos: Video[]   
 }>()
 
+defineEmits<{
+  showSingleVideo: [title: string, videoId: string]
+}>()
 
 </script>
 
 <template>
-  <div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  <div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     <div
       v-for="video in videos"
       :key="video.id.videoId"
-      class="bg-gray-800 rounded-lg overflow-hidden shadow-md"
+      class="bg-gray-800 rounded-lg overflow-hidden shadow-md cursor-pointer"
+      @click.prevent="$emit('showSingleVideo', video.snippet.title, video.id.videoId)"
     >
       <img :src="video.snippet.thumbnails.high.url" :alt="video.snippet.title" class="w-full h-40 object-cover" />
       <div class="p-4">
