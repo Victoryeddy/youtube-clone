@@ -16,9 +16,11 @@ const videoTitle = ref<string>("");
 const showModal = ref<boolean>(false);
 const isVideoLoaded = ref<boolean>(false);
 
+let debouncingCall = ref<any>(null)
+
 let API_KEY: ApiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
 
-const shout = async (value: string) => {
+const getVideos = async (value: string) => {
   try {
     let _response = await axiosInstance.get("/search", {
       params: {
@@ -34,6 +36,20 @@ const shout = async (value: string) => {
     console.error(e);
   }
 };
+
+// Debouncing 
+
+const searchVideos = (query: string) => {
+  if(debouncingCall.value){
+    clearTimeout(debouncingCall.value)
+  }
+
+  debouncingCall.value = setTimeout(() => {
+      getVideos(query)
+  }, 1500);
+}
+
+
 
 const loadVideoFromYT = async () => {
   return new Promise((resolve) => setTimeout(resolve, 1000)).then(() => {
@@ -57,7 +73,7 @@ const getImageFromUrl = (image:string) => {
                         
 }
 onMounted(() => {
-  shout("all");
+  getVideos("all");
 });
 </script>
 <template>
@@ -65,7 +81,7 @@ onMounted(() => {
     <YoutubeLayout class="min-h-screen">
       <template #header>
         <div>
-          <Header @update="shout" class="fixed z-50 w-full"/>
+          <Header @update="searchVideos" class="fixed z-50 w-full"/>
         </div>
       </template>
       <template #sidebar>

@@ -27,7 +27,7 @@ const onSearch = () => {
       type="text"
       placeholder="Search"
       v-model="searchTerm"
-      @keyup.enter="onSearch"
+      @input="onSearch"
       class="bg-gray-700 text-white p-2 rounded-lg w-2/3 md:w-1/3"
     />
     <div class="flex items-center space-x-4">
