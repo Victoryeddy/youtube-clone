@@ -103,7 +103,7 @@ onMounted(() => {
           <template #content>
             <Suspense>
               <template #default>
-                <div class="relative w-full h-[50vh] md:h-[40vh] aspect-video mt-5">
+                <div class="relative w-full h-[50vh] md:h-[40vh] lg:h-[60vh] aspect-video mt-5">
                   <iframe
                     v-if="isVideoLoaded"
                     :src="`https://www.youtube.com/embed/${currentLink}`"
